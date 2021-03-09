@@ -10,6 +10,27 @@ using Catch::Matchers::Equals;
 class Complex {
     void operator>>(std::string&) const;
     void operator<<(const std::string&);
+
+    private: 
+      int A;
+      int B;  
+
+    public: 
+    void set (float re, float im); {
+      A=re; B=im
+    }
+      Complex operator - (Complex Complex2 ){
+        complex temp; 
+        temp.re = re + Complex2.re;
+        temp.im = im + Complex2.im; 
+
+        return temp; 
+      
+      }
+
+
+
+      }
 };
 
 //------------------------------
