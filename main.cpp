@@ -2,37 +2,46 @@
 //  DO NOT MODIFY NEXT LINE
 //------------------------------
 #include <string>
+#include <iostream>
 #include "catch.hpp"
 using Catch::Matchers::Equals;
 //------------------------------
 
 // Fix the following class
 class Complex {
-    void operator>>(std::string&) const;
-    void operator<<(const std::string&);
+  int a,b;
+public:
+  Complex(int = 0, int = 0);
+  int re();
+  int im();
+  void operator>>(std::string&) const;
+  void operator<<(const std::string&);
+ };
 
-    private: 
-      int A;
-      int B;  
+ Complex::Complex(int x, int y) : a{x}, b{y} {}
+ int Complex::re() {return a;}
+ int Complex::im() {return b;}
+ void Complex::operator>>(std::string& out) const {
+   out += std::to_string(a);
+   if (b >= 0)
+    out += '+'
+   out.append(std::to_string(a));
+   out += "i";
+ }
+ void Complex::operator<<(const std::string& in){
+   int idx{1};
+   std::string tmp{""};
 
-    public: 
-    void set (float re, float im); {
-      A=re; B=im
-    }
-      Complex operator - (Complex Complex2 ){
-        complex temp; 
-        temp.re = re + Complex2.re;
-        temp.im = im + Complex2.im; 
+   while( !(in[idx] == '+' || in[idx] == '-') )
+     idx++;
 
-        return temp; 
-      
-      }
+  
+    a = std::stoi(in, substr(0, idx));
 
+    b = std::stoi(in, substr(idx, in.length() - idx - 1));
 
-
-      }
-};
-
+    
+ }
 //------------------------------
 //   DO NOT MODIFY TEST CASES
 //------------------------------
