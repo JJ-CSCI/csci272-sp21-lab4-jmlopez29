@@ -22,23 +22,22 @@ public:
  int Complex::re() {return a;}
  int Complex::im() {return b;}
  void Complex::operator>>(std::string& out) const {
-   out += std::to_string(a);
-   if (b >= 0)
-    out += '+'
    out.append(std::to_string(a));
+   if (b >= 0)
+    out += '+' ;
+   out += std::to_string(b);
    out += "i";
  }
  void Complex::operator<<(const std::string& in){
    int idx{1};
    std::string tmp{""};
 
-   while( !(in[idx] == '+' || in[idx] == '-') )
-     idx++;
+   while (!(in[idx] == '+' || in[idx] == '-'))
+       idx++;
+  tmp.append(in, 0, idx);
+  a = std::stoi(tmp);
 
-  
-    a = std::stoi(in, substr(0, idx));
-
-    b = std::stoi(in, substr(idx, in.length() - idx - 1));
+  b = std::stoi(in.substr(idx, in.length() - idx-1));
 
     
  }
